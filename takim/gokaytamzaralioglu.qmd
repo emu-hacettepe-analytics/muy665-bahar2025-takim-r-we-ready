@@ -39,4 +39,4 @@ Tarih kitapları, Masa Tenisi
 
 # Özgeçmiş
 
-[Gökay_Tamzaralıoğlu_Özgeçmiş](https://github.com/emu-hacettepe-analytics/muy665-bahar2025-takim-r-we-ready/blob/main/docs/takim/cv/G%C3%B6kayTamzaral%C4%B1o%C4%9Flu_CV_updated.pdf)
+[Gökay_Tamzaralıoğlu_Özgeçmiş](/docs/takim/cv/G%C3%B6kayTamzaral%C4%B1o%C4%9Flu_CV_updated.pdf)
