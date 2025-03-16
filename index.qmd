@@ -3,7 +3,7 @@ title: "Takım: R We Ready"
 sidebar: false 
 ---
 
-MUY660-İş Analitiği dersi takım sayfamıza hoş geldiniz.
+MUY665-İş Analitiği dersi takım sayfamıza hoş geldiniz.
 
 Bu analitik çalışmalarımızı paylaşıyoruz.
 
@@ -13,7 +13,7 @@ Lütfen faaliyetlerimizi görmek için için bizi takipte kalın.
 
 1.  [Gökay Tamzaralıoğlu](/takim/gokaytamzaralioglu.qmd)
 
-2.  [Hilalnur Beral Tamzaralıoğlu](/takim/dusantadic.qmd)
+2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd)
 
 3.  [Frederico Rodrigues de Paula Santos](/takim/fred.qmd)
 
@@ -21,7 +21,7 @@ Lütfen faaliyetlerimizi görmek için için bizi takipte kalın.
 
 ## Proje Adı
 
-MUY660-İş Analitiği iyileştirme çalışmaları (örnek)
+MUY665-İş Analitiği iyileştirme çalışmaları (örnek)
 
 ## Proje Konusu
 
