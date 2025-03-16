@@ -36,3 +36,7 @@ Java, C#, C++
 # Hobiler
 
 Tarih kitapları, Masa Tenisi
+
+# Özgeçmiş
+
+[Gökay_Tamzaralıoğlu_Özgeçmiş](D:\Users\user\Documents\GitHub\muy665-bahar2025-takim-r-we-ready\docs\takim\cv\GökayTamzaralıoğlu_CV_updated.pdf)
