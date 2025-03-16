@@ -36,8 +36,8 @@ website:
       search: true
       contents:
         - takim.qmd
-        - takim/dusantadic.qmd
-        - takim/edindzeko.qmd
+        - takim/hilalberal.qmd
+        - takim/gokaytamzaralioglu.qmd
         - takim/fred.qmd  
         - takim/szymanski.qmd  
         
