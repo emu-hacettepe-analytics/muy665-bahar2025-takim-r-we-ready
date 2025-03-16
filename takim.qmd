@@ -6,7 +6,7 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 # Takım Üyeleri
 
-1.  [Gökay_Tamzaralıoğlu](/takim/gökaytamzaralıoğlu.qmd)
+1.  [Gökay Tamzaralıoğlu](/takim/gokaytamzaralioglu.qmd)
 
 2.  [Dušan Tadić](/takim/dusantadic.qmd)
 

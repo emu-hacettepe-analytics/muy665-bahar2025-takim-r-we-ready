@@ -222,7 +222,7 @@
     "href": "index.html#takım-üyeleri",
     "title": "Takım: R We Ready",
     "section": "Takım Üyeleri",
-    "text": "Takım Üyeleri\n\nEdin_Džeko\nDušan Tadić\nFrederico Rodrigues de Paula Santos\nSebastian Szymański"
+    "text": "Takım Üyeleri\n\nGökay Tamzaralıoğlu\nDušan Tadić\nFrederico Rodrigues de Paula Santos\nSebastian Szymański"
   },
   {
     "objectID": "portfolyo.html",
@@ -240,7 +240,7 @@
     "href": "takim.html",
     "title": "Takım Üyeleri",
     "section": "",
-    "text": "Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfalarına gitmek için sol menüyü veya aşağıdaki linkleri kullanabilirsiniz.\n\nTakım Üyeleri\n\nEdin_Džeko\nDušan Tadić\nFrederico Rodrigues de Paula Santos\nSebastian Szymański\n\n\n\n\n\n Back to top",
+    "text": "Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfalarına gitmek için sol menüyü veya aşağıdaki linkleri kullanabilirsiniz.\n\nTakım Üyeleri\n\nGökay Tamzaralıoğlu\nDušan Tadić\nFrederico Rodrigues de Paula Santos\nSebastian Szymański\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Takım Üyeleri"
     ]
@@ -550,5 +550,19 @@
       "Takım Üyeleri",
       "Dusan Tadic"
     ]
+  },
+  {
+    "objectID": "takim/gokaytamzaralioglu.html#işler",
+    "href": "takim/gokaytamzaralioglu.html#işler",
+    "title": "Gökay Tamzaralıoğlu",
+    "section": "İşler",
+    "text": "İşler\n\nBİTES, Software Test Engineer, 2021-2022\nHAVELSAN, Software Test Engineer, 2022-2024\nASELSAN, Software Test Engineer, 2024 - devam ediyor"
+  },
+  {
+    "objectID": "takim/gokaytamzaralioglu.html#stajlar",
+    "href": "takim/gokaytamzaralioglu.html#stajlar",
+    "title": "Gökay Tamzaralıoğlu",
+    "section": "Stajlar",
+    "text": "Stajlar\n\nDIGITEST Savunma ve Havacılık, AR-GE Engineer Intern, 2019\nASELSAN, Control System Engineering Intern, 2020"
   }
 ]

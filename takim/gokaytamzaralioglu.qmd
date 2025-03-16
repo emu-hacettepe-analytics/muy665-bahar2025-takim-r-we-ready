@@ -1,5 +1,5 @@
 ---
-title: "Gökay_Tamzaralıoğlu"
+title: "Gökay Tamzaralıoğlu"
 ---
 
 ![](images/gökay.jpg){fig-align="center" width="185"}
