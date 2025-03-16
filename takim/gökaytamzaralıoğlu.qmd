@@ -1,0 +1,38 @@
+---
+title: "Gökay_Tamzaralıoğlu"
+---
+
+![](images/gökay.jpg){fig-align="center" width="185"}
+
+# Eğitim
+
+-   Lisans, Elektrik-Elektronik Mühendisliği, İhsan Doğramacı Bilkent Üniversitesi, Türkiye, 2016 - 2021.
+-   Yüksek Lisans, Endüstri Mühendisliği, Hacettepe Üniversitesi, Türkiye, 2025 - devam ediyor.
+
+# İş Deneyimi
+
+## İşler
+
+1.  BİTES, Software Test Engineer, 2021-2022
+
+2.  HAVELSAN, Software Test Engineer, 2022-2024
+
+3.  ASELSAN, Software Test Engineer, 2024 - devam ediyor
+
+## Stajlar
+
+1.  DIGITEST Savunma ve Havacılık, AR-GE Engineer Intern, 2019
+
+2.  ASELSAN, Control System Engineering Intern, 2020
+
+# Projeler
+
+# Yayınlar
+
+# Yetkinlikler
+
+Java, C#, C++
+
+# Hobiler
+
+Tarih kitapları, Masa Tenisi
