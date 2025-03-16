@@ -2,7 +2,7 @@
 title: "Hilalnur Beral Tamzaralıoğlu"
 ---
 
-![](/assets/images/vesikalik.jpeg){fig-align="center"}
+![](images/fotoğraf.jpg){fig-align="center" width="183"}
 
 # Eğitim
 
