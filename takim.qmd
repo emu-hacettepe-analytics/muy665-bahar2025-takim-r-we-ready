@@ -8,7 +8,7 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 1.  [Gökay Tamzaralıoğlu](/takim/gokaytamzaralioglu.qmd)
 
-2.  [Dušan Tadić](/takim/dusantadic.qmd)
+2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd)
 
 3.  [Frederico Rodrigues de Paula Santos](/takim/fred.qmd)
 
