@@ -6,9 +6,9 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 # Takım Üyeleri
 
-1.  [Gökay Tamzaralıoğlu](/takim/gokaytamzaralioglu.qmd)
+1.  [Gökay Tamzaralıoğlu](/takim/gokaytamzaralioglu.qmd "Gökay Tamzaralıoğlu")
 
-2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd)
+2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd "Hilalnur Beral Tamzaralıoğlu")
 
 3.  [Frederico Rodrigues de Paula Santos](/takim/fred.qmd)
 
