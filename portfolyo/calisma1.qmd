@@ -6,6 +6,36 @@ Bu çalışmada 3 görevimiz var. Bu görevlerin ilki takımın sayfasını gün
 
 ## (a)
 
+Seçilen video : Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler -Cem Vardar & Erdi Dasdemir
+
+Sohbette geçen ana başlıklar şu şekildedir :
+
+-   Mühendislik ve Problem Çözme
+
+-   Veri Bilimi ve Endüstri Mühendisliği
+
+-   Veri Bilimcilerinde Aranan Özellikler
+
+İlk olarak mühendislik ve problem çözme başlığından bahsedelim . Mühendislik belirli ihtiyaçları karşılamak ve sorunları çözmek için bilimsel , matematiksel ve pratik bilgiyi kullanarak çözümler üreten bir alandır. Mühendisler çeşitli sistemler , yapılar , cihazlar ve süreçler üzerinde çalışırlar. Bu çalışmaları yaparken problem çözme , bilim ve matematik uygulaması ve teknoloji kavramlarını iç içe harmonik bir şekilde kullanmaktadırlar.
+
+Peki endüstri mühendisliği ne ile uğraşır ? Endüstri mühendisliği karmaşık organizasyon ve işletmelerdeki problemlere yoğunlaşır. Kompleks problemlerle uğraşırken bile basit çözümlerle yola çıkılmalıdır. Kompleks çözümler gerektiğinde bile basit adımlarla başlamak gerekmektedir. Kompleks sisteme yapılan müdahaleler planlı olmalıdır. Görülmeyen yan etkilerin neler olduğunu analiz etmek oldukça önemlidir.
+
+Veri bilimciliği problem çözme yolunda bir araçtır. Kategorileri ve ilgilendiği alanlar aşağıdaki gibidir.
+
+\-**Genelci Veri Bilimciliği** **:** Data analizi , görselleştirme, özetleme, raporlama, dashboardlar geliştirme
+
+\-**Tahminsel Modelleme Veri Bilimciliği :** İstatistiksel modelleme , lojistik regresyon , sinir ağları
+
+**-Makine Öğrenmesi Veri Bilimciliği :** Görsel işleme , doğal dil işleme , video işleme
+
+**-Yöneylem Araştırması Veri Bilimciliği:** Lojistik planlama, envanter yönetimi , fiyatlandırma, üretim planlama
+
+**- Veri Bilimi Mühendisliği:** ETL, Canlı'ya alma, ölçekleme
+
+Veri bilimcilerinde aranan özellikler kısmında temel becerilerden bahsedilmiştir. Yumuşak yetenekler olarak **analitik düşünme** ,**problem çözme becerileri** , **merak ve anlama isteği** aranmaktadır.
+
+Teknik yeteneklerde ise **temel bilgiler** ( temel olasılık ve istatistik, temel programlama) , **veri toplama ve işleme yetenekleri** ,**görselleştirme** ve **modelleme** özellikler aranmaktadır.
+
 ## (b)
 
 ```{r}
