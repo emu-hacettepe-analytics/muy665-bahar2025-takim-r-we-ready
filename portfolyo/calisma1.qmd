@@ -2,15 +2,69 @@
 title: "Çalışma 1"
 ---
 
-\
-(Aşağıdakiler örnek olarak verilmiştir.)
-
-Bu çalışmada 3 görevimiz var. Bu görevler..... Bunlara sırayla aşağıda cevap arıyoruz.
+Bu çalışmada 3 görevimiz var. Bu görevlerin ilki takımın sayfasını güncellemek. Güncellenen takım sayfasını takımımızın linkinden görülebilir. İkinci görev ise takım üyelerinin sayfasını güncellemek. Güncellenen takım üyeleri sayfaları takım üyeleri sekmesinden görülebilir. Üçüncü görev için yapılan çalışmaları aşağıdan ulaşılabilir.
 
 ## (a)
 
+## (b)
+
 ```{r}
-1 + 1
+# Özel Özet Fonksiyonu Yazın:
+# install.packages("dslabs") #bir kez install edildigi için yoruma alındı
+library(dslabs)
+data(mtcars) # mtcars veri seti yüklendi
+str(mtcars) # mtcars veri seti genel bilgileri görüldü   
+
+# my_summary_stats fonksiyonu
+my_summary_stats <- function(x) {
+  if (!is.numeric(x)) { # parametre olarak verilen vektörün sayısal olduğu kontrolü
+    stop("Verilen parametre sayisal bir vektor degil!!!")
+  }
+  
+  summary_stats <- list( # liste halinde tutulan değerler
+    mean = mean(x, na.rm = TRUE), # ortalama değerini hesaplama
+    median = median(x, na.rm = TRUE), # medyan değerini hesaplama
+    sd = sd(x, na.rm = TRUE), # standart sapma değerini hesaplama
+    min = min(x, na.rm = TRUE), # minimum değerini hesaplama
+    max = max(x, na.rm = TRUE) # maksimum değerini hesaplama
+  )
+  
+  return(summary_stats)
+}
+# my_summary_stats(mtcars$carb) # fonksiyonun testi için örnek bir deneme komutu
+
+# Fonksiyonu Döngü Kullanarak Uygulama:
+# Sütun adı bastırılır ve altında ortalama, medyan, standart sapma, minimum ve maksimum değerleri sırasıyla bastırılır
+
+column_number <- ncol(mtcars) # sütun sayısını tutar
+for(i in 1:column_number) # sütun sayısı kadar sütun adını yazar ve değerleri yazar
+{
+  cat("Sutun adi:", colnames(mtcars)[i], "\n") # ChatGPT'den string ve variable'ı birlikte yazan fonksiyon alındı
+  print(my_summary_stats(mtcars[[i]])) # sütundaki hesaplanan değerler yazdırıldı
+}
+
+# apply ile Alternatif Bir Yaklaşım:
+apply(mtcars, 2, my_summary_stats)
 ```
 
-## (b)
+## (c)
+
+```{r}
+library(dslabs) 
+data(na_example) # na_example veri seti yüklendi
+str(na_example)  # na_example veri seti genel bilgileri görüldü  
+print(na_example) # na_example veri seti yazdırılıp NA değerleri görüldü
+
+print("Veri setindeki NA sayısı: ")
+print(sum(is.na(na_example)))
+
+print("veri setindeki tum NA degerlerini 2025 sayısı ile degistirdikten sonraki veri seti: ")
+cleaned_data <- ifelse(is.na(na_example), 2025, na_example)
+print(cleaned_data) # güncellenen ve NA bulunmayan veri seti
+
+print("Guncellenen veri setinde yer alan NA sayısı: ")
+sum(is.na(cleaned_data))
+
+print("Veri setinde yer alan 2025 sayısı: ")
+sum(cleaned_data == 2025)
+```
