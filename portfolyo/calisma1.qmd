@@ -12,7 +12,7 @@ Sohbette geçen ana başlıklar şu şekildedir :
 
 -   Mühendislik ve Problem Çözme
 
--   Veri Bilimi ve Endüstri Mühendisliği
+-   Veri Bilimi ve Endüstri Mühendisliği/
 
 -   Veri Bilimcilerinde Aranan Özellikler
 
