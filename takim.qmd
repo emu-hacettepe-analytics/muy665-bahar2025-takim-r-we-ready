@@ -10,6 +10,8 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd "Hilalnur Beral Tamzaralıoğlu")
 
-3.  [fred](/takim/fred.qmd "fred")
+3.  [Efrumiye Aktaş](/takim/efrumiye.qmd "Efrumiye Aktaş")
 
-4.  [szymanski](/takim/szymanski.qmd "szymanski")
+4.  [fred](/takim/fred.qmd "fred")
+
+5.  [szymanski](/takim/szymanski.qmd "szymanski")
