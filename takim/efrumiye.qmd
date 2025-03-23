@@ -2,7 +2,7 @@
 title: "Efrumiye Aktaş"
 ---
 
-![](takim/images/ea.jpg){fig-align="center"width="183"}
+![](takim/images/ea.jpg){fig-align="center" width="183"}
 
 # Eğitim
 
@@ -15,7 +15,6 @@ title: "Efrumiye Aktaş"
 
 1.  Nicomatic, Teknik Satış Yöneticisi, 2018-devam ediyor.
 
-
 ## Stajlar
 
 1.  HTR, Stajyer, yıl 2016
@@ -24,9 +23,7 @@ title: "Efrumiye Aktaş"
 
 # Projeler
 
-
 # Yayınlar
-
 
 # Yetkinlikler
 
@@ -34,6 +31,4 @@ Solidworks, Altium
 
 # Hobiler
 
-Kaligrafi
-Tenis
-Kürek
+Kaligrafi Tenis Kürek

@@ -222,7 +222,7 @@
     "href": "index.html#takım-üyeleri",
     "title": "Takım: R We Ready",
     "section": "Takım Üyeleri",
-    "text": "Takım Üyeleri\n\nGökay Tamzaralıoğlu\nHilalnur Beral Tamzaralıoğlu\nfred\nszymanski"
+    "text": "Takım Üyeleri\n\nGökay Tamzaralıoğlu\nHilalnur Beral Tamzaralıoğlu\nSerkan Ünlü\nAhmet Hikmet Aydoğan\nEfrumiye Aktaş"
   },
   {
     "objectID": "portfolyo.html",
@@ -240,7 +240,7 @@
     "href": "takim.html",
     "title": "Takım Üyeleri",
     "section": "",
-    "text": "Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfalarına gitmek için sol menüyü veya aşağıdaki linkleri kullanabilirsiniz.\n\nTakım Üyeleri\n\nGökay Tamzaralıoğlu\nHilalnur Beral Tamzaralıoğlu\nfred\nszymanski\n\n\n\n\n\n Back to top",
+    "text": "Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfalarına gitmek için sol menüyü veya aşağıdaki linkleri kullanabilirsiniz.\n\nTakım Üyeleri\n\nGökay Tamzaralıoğlu\nHilalnur Beral Tamzaralıoğlu\nEfrumiye Aktaş\nfred\nszymanski\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Takım Üyeleri"
     ]
@@ -604,6 +604,28 @@
     "crumbs": [
       "Porfolyo",
       "Çalışma 1"
+    ]
+  },
+  {
+    "objectID": "takim/efrumiye.html#işler",
+    "href": "takim/efrumiye.html#işler",
+    "title": "Efrumiye Aktaş",
+    "section": "İşler",
+    "text": "İşler\n\nNicomatic, Teknik Satış Yöneticisi, 2018-devam ediyor.",
+    "crumbs": [
+      "Takım Üyeleri",
+      "Efrumiye Aktaş"
+    ]
+  },
+  {
+    "objectID": "takim/efrumiye.html#stajlar",
+    "href": "takim/efrumiye.html#stajlar",
+    "title": "Efrumiye Aktaş",
+    "section": "Stajlar",
+    "text": "Stajlar\n\nHTR, Stajyer, yıl 2016\nBUGSAŞ, Stajyer, yıl 2017",
+    "crumbs": [
+      "Takım Üyeleri",
+      "Efrumiye Aktaş"
     ]
   }
 ]
