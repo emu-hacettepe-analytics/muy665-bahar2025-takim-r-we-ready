@@ -1,0 +1,50 @@
+---
+title: "Serkan Ünlü"
+---
+
+![](images/IMG_2248.jpg){fig-align="center" width="200"}
+
+# Eğitim
+
+-   Lisans, Makine Mühendisliği, Selçuk Üniversitesi, Türkiye, 09/2012 – 02/2018
+-   Yüksek Lisans, Kalite ve Uygunluk Değerlendirme Mühendisliği, Hacettepe Üniversitesi, Türkiye, 02/2025 - devam ediyor.
+
+# İş Deneyimi
+
+## İşler
+
+1.  Kalyon PV, Kalite Ürün Teknolojisi Mühendisi, 11/2021 - devam ediyor.
+
+2.  Gordion Beton A.Ş, Tasarım & İmalat Mühendisi, 05/2021 - 11/2021
+
+3.  Sanifoam Sünger A.Ş, Kalite Güvence Mühendisi, 01/2020-09/2020
+
+## Stajlar
+
+1.  ORS Bearing Inc., Stajyer, 06/2014
+
+2.  ORS Bearing Inc., Stajyer, 07/2016
+
+# Yetkinlikler
+
+AutoCAD, SolidWorks, Sonlu Elemanlar Analizi, Proje Yönetimi, ISO 9001, Ürün Geliştirme, Tedarikçi Geliştirme
+
+# Sertifikalar
+
+1.  CCPMAM01 – Basic Project Management and Basic Agile Project Management Training, 02/2024
+
+2.  ISO 19011 : 2018 İç Tetkikçi Eğitimi, 11/2023
+
+3.  SolidWorks, 12/2022
+
+4.  Online Classroom Training on PV Module Standards, 08/2022
+
+5.  Photovoltaic Modules, Design Evaluation, Construction Features and Experimantel Feautres Theoretical Training, 05/2022
+
+# Hobiler
+
+Bilimkurgu ve fantastik türde kitaplar, fantastik çizgi romanlar, basketbol ve rekabetçi bilgisayar oyunları.
+
+# Özgeçmiş
+
+[Serkan Ünlü Özgeçmiş](/docs/takim/cv/Serkan%20Ünlü_CV_%2021.03.2025.pdf)
