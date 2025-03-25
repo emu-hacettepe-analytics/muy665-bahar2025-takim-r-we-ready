@@ -2,7 +2,7 @@
 title: "Efrumiye Aktaş"
 ---
 
-![](takim/images/ea.jpg){fig-align="center" width="183"}
+![](images/ea.jpg){fig-align="center" width="183"}
 
 # Eğitim
 
