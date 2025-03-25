@@ -32,3 +32,7 @@ Solidworks, Altium
 # Hobiler
 
 Kaligrafi Tenis Kürek
+
+# Özgeçmiş
+
+[Efrumiye Aktaş Özgeçmiş](docs/takim/cv/Efrumiye Aktas_CV.pdf)
