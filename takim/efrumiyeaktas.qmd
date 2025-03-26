@@ -35,4 +35,4 @@ Kaligrafi, Tenis, Kürek
 
 # Özgeçmiş
 
-[Efrumiye Aktaş Özgeçmiş](docs/takim/cv/Efrumiye%20Aktas_CV.pdf "Efrumiye Aktaş Özgeçmiş")
+[Efrumiye Aktaş Özgeçmiş](docs/takim/cv/Efrumiye_Aktas_CV.pdf "Efrumiye Aktaş Özgeçmiş")
