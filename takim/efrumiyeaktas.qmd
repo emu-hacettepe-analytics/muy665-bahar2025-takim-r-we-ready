@@ -2,7 +2,7 @@
 title: "Efrumiye Aktaş"
 ---
 
-![](takim/images/ea.jpg){fig-align="center" width="183"}
+![](images/ea.jpg){fig-align="center" width="183"}
 
 # Eğitim
 
@@ -31,4 +31,8 @@ Solidworks, Altium
 
 # Hobiler
 
-Kaligrafi Tenis Kürek
+Kaligrafi, Tenis, Kürek
+
+# Özgeçmiş
+
+[Efrumiye Aktaş Özgeçmiş](docs/takim/cv/Efrumiye%20Aktas_CV.pdf)
