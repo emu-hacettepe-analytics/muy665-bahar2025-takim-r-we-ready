@@ -17,9 +17,9 @@ Lütfen faaliyetlerimizi görmek için için bizi takipte kalın.
 
 3.  [Serkan Ünlü](/takim/serkanunlu.qmd "Serkan Ünlü")
 
-4.  [Ahmet Hikmet Aydoğan](/takim/szymanski.qmd "Ahmet Hikmet Aydoğan")
+4.  [Ahmet Hikmet Aydoğan](/takim/ahikmet.qmd "Ahmet Hikmet Aydoğan")
 
-5.  [Efrumiye Aktaş](/takim/efrumiye.qmd "Efrumiye Aktaş")
+5.  [Efrumiye Aktaş](/takim/efrumiyeaktas.qmd "Efrumiye Aktaş")
 
 ## Proje Adı
 

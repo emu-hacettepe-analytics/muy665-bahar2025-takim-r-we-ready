@@ -10,8 +10,8 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 2.  [Hilalnur Beral Tamzaralıoğlu](/takim/hilalberal.qmd "Hilalnur Beral Tamzaralıoğlu")
 
-3.  [Efrumiye Aktaş](/takim/efrumiye.qmd "Efrumiye Aktaş")
+3.  [Efrumiye Aktaş](/takim/efrumiyeaktas.qmd "Efrumiye Aktaş")
 
 4.  [Serkan Ünlü](/takim/serkanunlu.qmd "Serkan Ünlü")
 
-5.  [szymanski](/takim/szymanski.qmd "szymanski")
+5.  [Ahmet Hikmet Aydoğan](/takim/ahikmet.qmd "Ahmet Hikmet Aydoğan")
