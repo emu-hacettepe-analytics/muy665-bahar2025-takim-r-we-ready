@@ -32,18 +32,26 @@
     ]
   },
   {
-    "objectID": "takim/fred.html#işler",
-    "href": "takim/fred.html#işler",
-    "title": "Frederico Rodrigues",
+    "objectID": "takim/ahikmet.html#işler",
+    "href": "takim/ahikmet.html#işler",
+    "title": "Ahmet Hikmet Aydoğan",
     "section": "İşler",
-    "text": "İşler\n\nFirma xxx, pozisyon xx, yıl xxx\nFirma yyy, pozisyon yyy, yıl yyy"
+    "text": "İşler\n\nFirma xxx, pozisyon xx, yıl xxx\nFirma yyy, pozisyon yyy, yıl yyy",
+    "crumbs": [
+      "Takım Üyeleri",
+      "Ahmet Hikmet Aydoğan"
+    ]
   },
   {
-    "objectID": "takim/fred.html#stajlar",
-    "href": "takim/fred.html#stajlar",
-    "title": "Frederico Rodrigues",
+    "objectID": "takim/ahikmet.html#stajlar",
+    "href": "takim/ahikmet.html#stajlar",
+    "title": "Ahmet Hikmet Aydoğan",
     "section": "Stajlar",
-    "text": "Stajlar\n\nFirma aaa, pozisyon xx, yıl xxx\nFirma bbb, pozisyon yyy, yıl yyy"
+    "text": "Stajlar\n\nFirma aaa, pozisyon xx, yıl xxx\nFirma bbb, pozisyon yyy, yıl yyy",
+    "crumbs": [
+      "Takım Üyeleri",
+      "Ahmet Hikmet Aydoğan"
+    ]
   },
   {
     "objectID": "proje.html",
