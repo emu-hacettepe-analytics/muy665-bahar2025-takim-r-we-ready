@@ -23,10 +23,6 @@ title: "Hilalnur Beral Tamzaralıoğlu"
 
 2.  ASELSAN A.Ş , Stajyer,2020
 
-# Projeler
-
-1.  Aktif olarak radar ve aviyonik projelerinde çalışıyorum.
-
 # Yayınlar
 
 1.  B. Subaşı, H. Beral, N. Güleç, and T. Dökeroğlu, “Detecting Fake News on Big Data”, Researcher, vol. 01, no. 02, pp. 1–5, 2021.
