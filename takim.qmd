@@ -12,6 +12,6 @@ Takım Üyelerimizin detaylı özgemişlerinin yer aldığı kişisel sayfaları
 
 3.  [Efrumiye Aktaş](/takim/efrumiye.qmd "Efrumiye Aktaş")
 
-4.  [Serkan Ünlü](/takim/serkanunlu..qmd "Serkan Ünlü")
+4.  [Serkan Ünlü](/takim/serkanunlu.qmd "Serkan Ünlü")
 
 5.  [szymanski](/takim/szymanski.qmd "szymanski")
