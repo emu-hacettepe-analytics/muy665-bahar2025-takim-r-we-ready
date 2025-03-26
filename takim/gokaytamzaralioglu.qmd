@@ -29,10 +29,6 @@ title: "Gökay Tamzaralıoğlu"
 
 Proje1, proje2, proje3
 
-# Yayınlar
-
-Yayın1, yayın2, yayın3
-
 # Yetkinlikler
 
 Java, C#, C++
