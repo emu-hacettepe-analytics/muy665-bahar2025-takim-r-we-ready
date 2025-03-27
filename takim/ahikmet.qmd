@@ -36,3 +36,5 @@ SAP, Minitab, Solidworks
 # Hobiler
 
 Sudoku ve Akıl Oyunları, Briç, Yüzmek
+
+# Özgeçmiş
