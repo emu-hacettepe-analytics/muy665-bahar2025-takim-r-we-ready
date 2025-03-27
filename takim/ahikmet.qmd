@@ -27,8 +27,6 @@ title: "Ahmet Hikmet Aydoğan"
 
 1.  ODTÜ Mühendislik Günleri- Dizayn
 
-# Yayınlar
-
 # Yetkinlikler
 
 SAP, Minitab, Solidworks
@@ -38,3 +36,5 @@ SAP, Minitab, Solidworks
 Sudoku ve Akıl Oyunları, Briç, Yüzmek
 
 # Özgeçmiş
+
+[Ahmet_Hikmet_Aydoğan_Özgeçmiş](/docs/takim/cv/CV_Ahmet_Hikmet_Aydoğan.pdf "Ahmet_Hikmet_Aydoğan_Özgeçmiş")
