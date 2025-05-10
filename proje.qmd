@@ -33,6 +33,382 @@ xxxxxx
 
 xxxxxx
 
+```{r}
+#Sys.setlocale("LC_ALL", 'Turkish')
+
+library(dplyr)
+library(tidyr)
+library(readr)
+library(readxl)
+library(ggplot2)
+library(scales)
+
+
+# il_ve_evlilik_suresi_bosanmalar veri setini oku
+il_ve_evlilik_suresi_bosanmalar <- read_xlsx("D:/Users/user/Documents/GitHub/muy665-bahar2025-takim-r-we-ready/docs/docs/il_ve_evlilik_suresi_bosanmalar.xlsx")
+
+# Yıl sütunundaki boş hücreleri bir önceki dolu değerle doldur
+il_ve_evlilik_suresi_bosanmalar_duzenli <- il_ve_evlilik_suresi_bosanmalar %>%
+  fill("Yıl", .direction = "down")
+
+# Sütunlarda yer alan "-" işaretini 0'la doldur
+sutunlar_evliliksuresi <- c("0-1", "1", "2", "3", "4", "5", "6-10", "11-15", "16+")
+
+il_ve_evlilik_suresi_bosanmalar_duzenli <- il_ve_evlilik_suresi_bosanmalar_duzenli %>%
+  mutate(across(all_of(sutunlar_evliliksuresi), ~ replace(., . == "-", "0"))) %>%
+  mutate(across(all_of(sutunlar_evliliksuresi), ~ as.numeric(.)))
+
+veri_long <- il_ve_evlilik_suresi_bosanmalar_duzenli %>%
+  pivot_longer(
+    cols = -c("İl", "Yıl","Bölge"),
+    names_to = "Evlilik_Suresi",
+    values_to = "Bosanma_Sayisi"
+  )
+
+veri_long$Evlilik_Suresi <- factor(veri_long$Evlilik_Suresi,
+                                   levels = c("0-1", "1", "2", "3", "4", "5", "6-10", "11-15", "16+"))
+
+
+
+```
+
+```{r}
+# Tüm yılları bir araya getirip toplam boşanma sayısını hesapla
+veri_hist <- veri_long %>%
+  group_by(Evlilik_Suresi) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+ggplot(veri_hist, aes(x = Evlilik_Suresi, y = Toplam_Bosanma)) +
+  geom_col(fill = "#1f78b4", color = "black", width = 1) +
+  labs(
+    title = "Evlilik Süresine Göre Toplam Boşanma Sayısı",
+    x = "Evlilik Süresi (yıl)",
+    y = "Toplam Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
+  ) +
+  scale_y_continuous(
+    labels = comma,
+    breaks = seq(0, max(veri_hist$Toplam_Bosanma), by = 25000)
+  )
+```
+
+```{r}
+veri_bolge <- veri_long %>%
+  group_by(Bölge) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  arrange(desc(Toplam_Bosanma))
+
+
+ggplot(veri_bolge, aes(x = reorder(Bölge, -Toplam_Bosanma), y = Toplam_Bosanma)) +
+  geom_col(width = 1, fill = "#1f78b4", color = "black") +  # birleşik sütunlar
+  labs(
+    title = "Coğrafi Bölgelere Göre Toplam Boşanma Sayısı",
+    x = "Bölge",
+    y = "Toplam Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
+  ) +
+  scale_y_continuous(
+    labels = comma,
+    breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 25000)
+  )
+```
+
+```{r}
+# Yıllara ve bölgelere göre boşanma sayılarını grupla
+veri_yil_bolge <- veri_long %>%
+  group_by(Yıl, Bölge) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+# Yıl sıralı sayı olarak dursun
+veri_yil_bolge$Yıl <- as.numeric(veri_yil_bolge$Yıl)
+
+# Grafik
+ggplot(veri_yil_bolge, aes(x = Yıl, y = Toplam_Bosanma, fill = Bölge)) +
+  geom_col(position = "dodge", color = "black") +
+  labs(
+    title = "Yıllara ve Bölgelere Göre Boşanma Sayıları",
+    x = "Yıl",
+    y = "Toplam Boşanma Sayısı",
+    fill = "Bölge"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_x_continuous(breaks = sort(unique(veri_yil_bolge$Yıl))) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 5000))
+```
+
+```{r}
+ggplot(veri_yil_bolge, aes(x = Yıl, y = Toplam_Bosanma, color = Bölge)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(
+    title = "Yıllara ve Bölgelere Göre Boşanma Sayıları",
+    x = "Yıl",
+    y = "Toplam Boşanma Sayısı",
+    color = "Bölge"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(breaks = sort(unique(veri_yil_bolge$Yıl))) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 5000))
+```
+
+```{r}
+# 1. Evlilik sürelerini kısa / uzun olarak kategorize et
+veri_long_kategorili <- veri_long %>%
+  mutate(Sure_Grubu = case_when(
+    Evlilik_Suresi %in% c("0-1", "1", "2", "3", "4", "5") ~ "Kısa Süre(1-5 Yıl)",
+    Evlilik_Suresi %in% c("6-10", "11-15", "16+") ~ "Uzun Süre (6+ Yıl)",
+    TRUE ~ "Diğer"
+  ))
+
+# 2. Bölge ve süre grubuna göre toplam boşanma
+veri_bolge_sure <- veri_long_kategorili %>%
+  filter(Sure_Grubu != "Diğer") %>%
+  group_by(Bölge, Sure_Grubu) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+# 3. Grafik
+ggplot(veri_bolge_sure, aes(x = reorder(Bölge, Toplam_Bosanma), y = Toplam_Bosanma, fill = Bölge)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ Sure_Grubu) +
+  labs(
+    title = "Evlilik Süresi Grupları - Bölge Boşanma Sayısı",
+    x = "Bölge",
+    y = "Toplam Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  ) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 20000))
+```
+
+```{r}
+# il_ve_dava_süresi_bosanmalar veri setini oku
+il_ve_dava_suresi_bosanmalar <- read_xlsx("D:/Users/user/Documents/GitHub/muy665-bahar2025-takim-r-we-ready/docs/docs/il_ve_dava_suresi_bosanmalar.xlsx")
+
+# Yıl sütunundaki boş hücreleri bir önceki dolu değerle doldur
+il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar %>%
+  fill("Yıl", .direction = "down")
+
+# Sütunlarda yer alan "-" işaretini 0'la doldur
+sutunlar_davasuresi <- c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+")
+
+il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar_duzenli %>%
+  mutate(across(all_of(sutunlar_davasuresi), ~ replace(., . == "-", "0"))) %>%
+  mutate(across(all_of(sutunlar_davasuresi), ~ as.numeric(.)))
+
+
+dava_veri_long <- il_ve_dava_suresi_bosanmalar_duzenli %>%
+  pivot_longer(
+    cols = -c("İl", "Yıl","Bölge"),
+    names_to = "Dava_Suresi",
+    values_to = "Bosanma_Sayisi"
+  )
+
+dava_veri_long$Dava_Suresi <- factor(dava_veri_long$Dava_Suresi,
+                                   levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"))
+
+
+dava_karsilastirma <- dava_veri_long %>%
+  group_by(Dava_Suresi, Bölge) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+ggplot(dava_karsilastirma, aes(x = Dava_Suresi, y = Toplam_Bosanma, color = Bölge)) +
+  geom_point(position = position_dodge(width = 0.5), size = 3) +
+  labs(
+    title = "Dava Süresine Göre Evliliklerde Boşanma Sayısı",
+    x = "Dava Süresi",
+    y = "Toplam Boşanma Sayısı",
+    color = "Evlilik Süresi Grubu"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  ) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(dava_karsilastirma$Toplam_Bosanma), by = 10000))
+
+```
+
+```{r}
+# 1. Yıl ve dava süresine göre toplam boşanma sayısını hesapla
+dava_yil_ozet <- dava_veri_long %>%
+  group_by(Yıl, Dava_Suresi) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+# 2. Dava süresini sıralı faktör haline getir (görsel için)
+dava_yil_ozet$Dava_Suresi <- factor(
+  dava_yil_ozet$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# 3. Grafik (facet ile her yıl için ayrı panel)
+ggplot(dava_yil_ozet, aes(x = Dava_Suresi, y = Toplam_Bosanma)) +
+  geom_point(color = "#1f78b4", size = 3) +
+  facet_wrap(~ Yıl) +
+  labs(
+    title = "Yıllara Göre Dava Süresine Bağlı Boşanma Sayıları",
+    x = "Dava Süresi",
+    y = "Toplam Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    strip.text = element_text(face = "bold"),
+    axis.text.x = element_text(angle = 90, hjust = 1),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  ) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(dava_karsilastirma$Toplam_Bosanma), by = 10000))
+
+```
+
+```{r}
+# 1. Toplam boşanma sayısını Yıl, Bölge ve Dava Süresi bazında grupla
+dava_yil_bolge <- dava_veri_long %>%
+  group_by(Yıl, Bölge, Dava_Suresi) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+# 2. Dava süresini sıralı faktör olarak ayarla
+dava_yil_bolge$Dava_Suresi <- factor(
+  dava_yil_bolge$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# 3. Grafik
+ggplot(dava_yil_bolge, aes(x = Yıl, y = Toplam_Bosanma, color = Bölge)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~ Dava_Suresi, scales = "free_y") +
+  labs(
+    title = "Yıllara Göre Dava Süresi ve Bölgelere Bağlı Boşanma Sayısı",
+    x = "Yıl",
+    y = "Toplam Boşanma Sayısı",
+    color = "Bölge"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    strip.text = element_text(face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  scale_y_continuous(labels = scales::comma)
+```
+
+```{r}
+# Dava süresi sıralı faktör olarak ayarlanmalı
+dava_veri_long$Dava_Suresi <- factor(
+  dava_veri_long$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# Boxplot
+ggplot(dava_veri_long, aes(x = Dava_Suresi, y = Bosanma_Sayisi)) +
+  geom_boxplot(fill = "#1f78b4", alpha = 0.7, outlier.color = "red") +
+  labs(
+    title = "Dava Süresine Göre Boşanma Sayısı Dağılımı",
+    x = "Dava Süresi",
+    y = "Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_log10(labels = scales::comma)
+```
+
+```{r}
+# Toplam boşanma sayısını dava süresine göre hesapla
+dava_pie <- dava_veri_long %>%
+  group_by(Dava_Suresi) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  mutate(Yuzde = round(Toplam_Bosanma / sum(Toplam_Bosanma) * 100, 1)) %>%
+  ungroup()
+
+# Dava süresi sıralı faktör
+dava_pie$Dava_Suresi <- factor(
+  dava_pie$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# Daire grafiği
+ggplot(dava_pie, aes(x = "", y = Toplam_Bosanma, fill = Dava_Suresi)) +
+  geom_col(width = 1, color = "white") +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(Yuzde, "%")),
+            position = position_stack(vjust = 0.5), color = "white", size = 4) +
+  labs(
+    title = "Dava Süresine Göre Toplam Boşanma Oranları",
+    fill = "Dava Süresi"
+  ) +
+  theme_void(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+```{r}
+# Toplam boşanma sayısını Dava Süresi ve Bölge bazında hesapla
+dava_sure_bolge <- dava_veri_long %>%
+  group_by(Dava_Suresi, Bölge) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  ungroup()
+
+# Dava süresini sıralı faktör olarak ayarla
+dava_sure_bolge$Dava_Suresi <- factor(
+  dava_sure_bolge$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# Barplot (Gruplanmış histogram görünümü)
+ggplot(dava_sure_bolge, aes(x = Dava_Suresi, y = Toplam_Bosanma, fill = Bölge)) +
+  geom_col(position = position_dodge2(width = 0.8, preserve = "single"), color = "black", width = 0.9) +
+  labs(
+    title = "Dava Süresine ve Bölgelere Göre Boşanma Sayıları",
+    x = "Dava Süresi",
+    y = "Toplam Boşanma Sayısı",
+    fill = "Bölge"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_continuous(labels = comma, breaks = seq(0, max(dava_sure_bolge$Toplam_Bosanma), by = 10000))
+
+```
+
+```         
+```
+
 # Analiz
 
 xxxxxx
