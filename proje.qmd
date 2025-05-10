@@ -1,37 +1,78 @@
 ---
-title: "Proje X (proje adını yazınız)"
+title: "Türkiye'de Boşanma Dinamiklerinin Analizi: Bölgesel ve Süre Bazlı Yaklaşımlar"
 number-sections: true
 ---
 
-**Proje sayfamıza hoş geldiniz.**
-
-*Projemizle ilgili güncellemelerden haberdar olmak için bu alanı takip edin.*
-
-(Aşağıdaki başlıklar örnek olarak verilmiştir; lütfen gerektiği şekilde düzenlemekten çekinmeyin.)
-
 # Proje Genel Bakış ve Kapsamı
 
-xxxxxx
+Bu projede Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava ve evlilik süresi gibi zaman boyutlarına göre analiz edilmiştir. Amaç, boşanma sayılarını etkileyen temel faktörleri keşfetmek, farklı bölgeler arasındaki yapısal farklılıkları belirlemek ve kısa/uzun dava süreçlerinin hangi bölgelerde yoğunlaştığını ortaya koymaktır. R programlama dili kullanılarak gerçekleştirilen analizde çeşitli görselleştirme teknikleri (bar grafikler, kutu grafikleri, nokta grafikler ve pasta grafikler) yardımıyla boşanma davranışı incelenmiş; ayrıca süreç sürekliliğini değerlendirebilmek adına zaman serisi temelli analizlere de yer verilmiştir.
+
+![](docs/takim/proje_image/harvey.png){width="500"}
 
 # Veri
 
-xxxxxx
-
 ## Veri Kaynağı
 
-xxxxxx
+[TÜİK Veri Portalı Nüfus ve Demografi Sayfası](https://data.tuik.gov.tr/Kategori/GetKategori?p=Nufus-ve-Demografi-109 "TÜİK Veri Portalı Nüfus ve Demografi Sayfası")
 
 ## Veri Hakkında Genel Bilgiler
 
-xxxxxx
+2 adet veri setimiz bulunmaktadır. Bunlar; "İl ve evlilik süresine göre boşanmalar" ve "İl ve dava süresine göre boşanmalar".
+
+İl ve evlilik süresine göre boşanmalar veri seti, Türkiye’de iller ve coğrafi bölgeler bazında boşanma olaylarını evlilik süresi dikkate alınarak detaylı biçimde sunmaktadır. Toplamda 567 gözlem ve 12 değişkenden oluşan veri setinde her satır, bir ilin belirli bir yıl içerisindeki boşanma istatistiklerini temsil etmektedir. “Yıl”, “İl” ve “Bölge” değişkenleri tanımlayıcı nitelikte olup, diğer sütunlar boşanma olaylarının evlilik süresine göre dağılımını içermektedir. Evlilik süresi kategorileri, “0–1 yıl” aralığından başlayıp, “16 yıl ve üzeri” olacak şekilde ayrıntılı olarak sınıflandırılmıştır.
+
+İl ve dave süresine göre boşanmalar veri seti, Türkiye'deki illere ve yıllara göre boşanma davalarının sonuçlanma süresine göre dağılımını içermektedir. Toplam 567 gözlem ve 11 değişkenden oluşan veri setinde her bir satır, bir ilin belirli bir yıl içerisindeki boşanma dağılımını temsil etmektedir. Veri setinde “Yıl”, “İl” ve “Bölge” gibi tanımlayıcı değişkenlerin yanı sıra, boşanma davalarının sürelerine göre ayrıldığı dokuz farklı kategori bulunmaktadır. Bu kategoriler, 2 aydan az süren davalardan başlayarak 36 ay ve üzeri süreyle sonuçlanan davalara kadar detaylı biçimde sınıflandırılmıştır.
 
 ## Tercih Sebebi
 
-xxxxxx
+Bu iki veri seti, Türkiye'deki boşanma dinamiklerini hem dava süresi hem de evlilik süresi bağlamında çok boyutlu olarak incelemeye olanak tanıdığı için tercih edilmiştir. Veri setleri, tüm illeri ve bölgeleri kapsaması sayesinde bölgesel karşılaştırmalar yapmayı mümkün kılarken, zaman değişkeni sayesinde yıllara bağlı eğilim analizlerigerçekleştirmeyi de sağlamaktadır. Ayrıca dava süresi ve evlilik süresi gibi iki farklı değişkenin boşanma sayılarıyla ilişkisi, boşanma davranışlarının altında yatan farklı yapısal faktörleri anlamamıza katkı sunmaktadır.
 
 ## Ön İşleme
 
-xxxxxx
+Veri analizine başlamadan önce veri setlerinde temel ön işleme adımları uygulanmıştır. İlk olarak tüm sütun adları standartlaştırılmış ve gereksiz boşluklar temizlenmiştir. Ardından veri tipleri kontrol edilerek sayısal olmayan alanlar (örneğin yıl, il, bölge) kategorik olarak düzenlenmiştir. Sayısal değişkenlerin dağılımı incelenerek uç değer (outlier) olup olmadığı kontrol edilmiştir. Son olarak analiz ve görselleştirme süreçlerinde kullanılmak üzere veri setleri uygun formatlara dönüştürülmüştür.
+
+Veri setlerinde iller yer almakta ancak bölgeler yer almamaktadır. Her ile karşılık gelen bölge veri setine bir sütun olarak eklenmiştir.
+
+```{r}
+# # Paketi yükle (eğer yüklü değilse önce install.packages("writexl"))
+# library(writexl)
+# 
+# # Düzenlenmiş veriyi yeni bir dosyaya kaydet
+# write_xlsx(il_ve_dava_suresi_bosanmalar_duzenli, "D:/GOKAY/Hacettepe_YL/MUY665_IsAnalitigi/proje/new_il_ve_dava_suresi_bosanmalar.xlsx")
+# write_xlsx(il_ve_evlilik_suresi_bosanmalar_duzenli, "D:/GOKAY/Hacettepe_YL/MUY665_IsAnalitigi/proje/new_il_ve_evlilik_suresi_bosanmalar.xlsx")
+# 
+# bolge_tablosu <- tibble::tibble(
+#   İl = c("Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın",
+#          "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum",
+#          "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun",
+#          "Gümüşhane", "Hakkari", "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu",
+#          "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş",
+#          "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop",
+#          "Sivas", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak",
+#          "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova",
+#          "Karabük", "Kilis", "Osmaniye", "Düzce"),
+#   Bölge = c(
+#     "Akdeniz", "Güneydoğu Anadolu", "Ege", "Doğu Anadolu", "Karadeniz", "İç Anadolu", "Akdeniz", "Karadeniz", "Ege",
+#     "Marmara", "Marmara", "Doğu Anadolu", "Doğu Anadolu", "Karadeniz", "Akdeniz", "Marmara", "Marmara", "İç Anadolu", "Karadeniz",
+#     "Ege", "Güneydoğu Anadolu", "Marmara", "Doğu Anadolu", "Doğu Anadolu", "Doğu Anadolu", "İç Anadolu", "Güneydoğu Anadolu", "Karadeniz",
+#     "Karadeniz", "Doğu Anadolu", "Akdeniz", "Akdeniz", "Akdeniz", "Marmara", "Ege", "Doğu Anadolu", "Karadeniz", "İç Anadolu",
+#     "Marmara", "İç Anadolu", "Marmara", "İç Anadolu", "Ege", "Doğu Anadolu", "Ege", "Akdeniz", "Güneydoğu Anadolu", "Ege",
+#     "Doğu Anadolu", "İç Anadolu", "İç Anadolu", "Karadeniz", "Karadeniz", "Marmara", "Karadeniz", "Güneydoğu Anadolu", "Karadeniz", "İç Anadolu",
+#     "Marmara", "Karadeniz", "Karadeniz", "Doğu Anadolu", "Güneydoğu Anadolu", "Ege", "Doğu Anadolu", "İç Anadolu", "Karadeniz",
+#     "İç Anadolu", "Karadeniz", "İç Anadolu", "İç Anadolu", "Güneydoğu Anadolu", "Güneydoğu Anadolu", "Karadeniz", "Doğu Anadolu", "Doğu Anadolu", "Marmara",
+#     "Karadeniz", "Güneydoğu Anadolu", "Akdeniz", "Karadeniz")
+# )
+# 
+# veri_long <- veri_long %>%
+#   left_join(bolge_tablosu, by = "İl")
+# write_xlsx(veri_long, path = "D:/GOKAY/Hacettepe_YL/MUY665_IsAnalitigi/proje/evlilik_türetildi.xlsx")
+# 
+# veri_bolgeli <- il_ve_evlilik_suresi_bosanmalar %>%
+#   left_join(bolge_tablosu, by = "İl")
+# 
+# # 5. Yeni Excel dosyası olarak kaydet
+# write_xlsx(veri_bolgeli, "D:/GOKAY/Hacettepe_YL/MUY665_IsAnalitigi/proje/il_ve_evlilik_suresi_bosanmalar.xlsx")
+```
 
 ```{r}
 #Sys.setlocale("LC_ALL", 'Turkish')
@@ -100,7 +141,11 @@ dava_veri_long$Dava_Suresi <- factor(dava_veri_long$Dava_Suresi,
 
 # Analiz
 
-xxxxxx
+**Evlilik Süresine Göre Boşanma Sayısı**
+
+Grafikte, evlilik süresine göre toplam boşanma sayıları kategorik olarak görselleştirilmiştir. Yatay eksende evlilik süresi yıl bazında sınıflandırılmış; dikey eksende ise her sınıfa ait toplam boşanma sayısı gösterilmiştir.
+
+En yüksek boşanma sayısı, 16 yıl ve üzeri evliliklerde gerçekleşmiştir. Bu durum, uzun süreli evliliklerde de boşanmanın sıkça meydana geldiğini ve sürenin artmasının her zaman evliliğin devamı açısından koruyucu bir faktör olmadığını göstermektedir. Bu bulgu, evlilik süresi arttıkça boşanma ihtimalinin azalacağı yönündeki klasik varsayıma karşı bir istisna oluşturmaktadır.
 
 ```{r}
 # Tüm yılları bir araya getirip toplam boşanma sayısını hesapla
@@ -128,6 +173,14 @@ ggplot(veri_hist, aes(x = Evlilik_Suresi, y = Toplam_Bosanma)) +
   )
 ```
 
+**Coğrafi Bölgelere Göre Boşanma Sayısı Karşılaştırması**
+
+Grafikte Türkiye'nin yedi coğrafi bölgesi için toplam boşanma sayıları sunulmuştur. Görsel veriye göre en yüksek boşanma sayısı Marmara Bölgesi’ne aittir. Bu bölgeyi sırasıyla İç Anadolu, Ege ve Akdeniz bölgeleri takip etmektedir. En düşük boşanma sayıları ise Doğu Anadolu ve Güneydoğu Anadolu bölgelerinde gözlemlenmektedir.
+
+Marmara Bölgesi açık ara farkla en fazla boşanma vakasına sahiptir. Bu durum büyük ölçüde bölgenin nüfus yoğunluğunun yüksek olmasına bağlanabilir. İstanbul gibi metropol şehirleri barındıran Marmara, Türkiye’nin ekonomik, sosyal ve sanayi açıdan en yoğun bölgelerinden biridir. 
+
+İç Anadolu, Ege ve Akdeniz bölgeleri de görece yüksek boşanma sayılarına sahiptir. Bu üç bölgede de büyük şehirlerin (Ankara, İzmir, Antalya gibi) bulunması, bölgelerdeki boşanma sayısını arttırmaktadır.
+
 ```{r}
 veri_bolge <- veri_long %>%
   group_by(Bölge) %>%
@@ -152,6 +205,12 @@ ggplot(veri_bolge, aes(x = reorder(Bölge, -Toplam_Bosanma), y = Toplam_Bosanma)
     breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 25000)
   )
 ```
+
+**Yıl ve Bölgelere Göre Boşanma Sayısı Karşılaştırması**
+
+Grafikte, 2018 ile 2024 yılları arasında Türkiye’nin yedi coğrafi bölgesine göre yıllık toplam boşanma sayıları gösterilmiştir. Grafik, hem zaman serisi hem de çoklu kategorik değişken (bölge) üzerinden karşılaştırma imkânı sunmaktadır.
+
+Zaman içinde genel boşanma eğilimi incelendiğinde, 2020 yıllarında bir miktar düşüş dikkat çekmektedir. Bu yılda yaşanan azalma, dışsal faktörlerin etkisiyle (örneğin pandemi dönemi) açıklanabilir ancak bu grafikte dışsal nedenler analiz dışıdır. 2021 yılından itibaren boşanma sayılarında yeniden artış gözlemlenmektedir. Bu artış eğilimi, yıllar bazında pozitif bir trend olduğuna işaret eder. Özellikle Marmara, İç Anadolu ve Ege bölgelerinde yıllara göre istikrarlı bir artış eğilimi bulunmaktadır.
 
 ```{r}
 # Yıllara ve bölgelere göre boşanma sayılarını grupla
@@ -200,6 +259,16 @@ ggplot(veri_yil_bolge, aes(x = Yıl, y = Toplam_Bosanma, color = Bölge)) +
   scale_y_continuous(labels = comma, breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 5000))
 ```
 
+**Evlilik Süresi Gruplarına** **Göre Bölgelerdeki Boşanma Sayısı Karşılaştırması**
+
+Grafikte, evlilik süresine göre iki ayrı gruba ayrılmış (1–5 yıl ve 6+ yıl) boşanma sayıları, Türkiye’nin yedi coğrafi bölgesine göre karşılaştırmalı olarak sunulmuştur. Her bir bölge için kısa süreli (1–5 yıl) ve uzun süreli (6 yıl ve üzeri) evliliklerde gerçekleşen boşanmaların toplam sayıları iki ayrı panelde gösterilmektedir.
+
+Veri incelendiğinde, her iki sürede de Marmara Bölgesi belirgin şekilde en yüksek boşanma sayısına sahiptir. Diğer bölgelerle kıyaslandığında, Marmara’daki fark özellikle uzun süreli boşanmalarda ciddi şekilde artış göstermektedir. Bu durum, bölgenin yüksek evlilik hacminin yanı sıra evlilik süresine bağlı olarak boşanma eğilimlerinin daha yoğun yaşandığını göstermektedir.
+
+Kısa süreli boşanmalarda ikinci sırada yer alan bölgeler İç Anadolu, Ege ve Akdeniz, benzer seviyelerde değerlere sahiptir. Diğer bölgelerde boşanma sayısı belirgin şekilde daha düşüktür. Bu tablo, kısa süreli evliliklerde boşanma eğiliminin daha çok nüfus yoğunluğu yüksek ve şehirleşmiş bölgelerde gerçekleştiğini göstermektedir.
+
+Uzun süreli boşanmalara bakıldığında ise tüm bölgelerde belirgin bir artış gözlemlenmektedir. Bu artışın oranı, kısa süreli boşanmalara göre daha yüksek olup, veri setinde uzun evliliklerde boşanmanın daha yaygın olduğunu göstermektedir.
+
 ```{r}
 # 1. Evlilik sürelerini kısa / uzun olarak kategorize et
 veri_long_kategorili <- veri_long %>%
@@ -233,6 +302,45 @@ ggplot(veri_bolge_sure, aes(x = reorder(Bölge, Toplam_Bosanma), y = Toplam_Bosa
   scale_y_continuous(labels = comma, breaks = seq(0, max(veri_bolge$Toplam_Bosanma), by = 20000))
 ```
 
+**Dava Süresine Göre Bölgelerdeki Boşanma Sayısı Karşılaştırması**
+
+Grafikte, boşanma davalarının sonuçlanma süresi ile evliliklerde gerçekleşen toplam boşanma sayısı arasındaki ilişki incelenmiştir. Yatay eksende dava süresi (kategorik aralıklarla), dikey eksende ise toplam boşanma sayısı yer almaktadır. Renklerle gösterilen noktalar, her dava süresi kategorisinde farklı coğrafi bölgeleri temsil etmektedir.
+
+Veri incelendiğinde, en yüksek boşanma sayısı 2 aydan az süren davalar kategorisinde görülmektedir. Özellikle Marmara Bölgesi, bu kategoride diğer bölgelerden açık farkla ayrılmaktadır. Aynı şekilde Akdeniz, İç Anadolu ve Ege gibi bölgelerde de kısa sürede sonuçlanan boşanma davalarının yüksek sayılara ulaştığı görülmektedir. Bu durum, boşanma sürecinin hızlı sonuçlandığı durumlarda anlaşmalı boşanmaların yaygın olduğunudüşündürebilir. Ayrıca dava süresi kısa olan boşanmaların, taraflar arasında çekişmenin az olduğu vakaları yansıttığı değerlendirilebilir.
+
+Dava süresi arttıkça boşanma sayılarında belirgin bir azalma gözlemlenmektedir. Özellikle 5 ay ve sonrasında, tüm bölgelerdeki noktalar benzer seviyelerde sıkışmakta ve boşanma sayıları 20.000’in altına düşmektedir. Boşanma vakalarının büyük kısmı kısa dava süresine sahipken, dava süresi uzadıkça olay sayısı hızla azalmaktadır. 
+
+```{r}
+# Toplam boşanma sayısını dava süresine göre hesapla
+dava_pie <- dava_veri_long %>%
+  group_by(Dava_Suresi) %>%
+  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
+  mutate(Yuzde = round(Toplam_Bosanma / sum(Toplam_Bosanma) * 100, 1)) %>%
+  ungroup()
+
+# Dava süresi sıralı faktör
+dava_pie$Dava_Suresi <- factor(
+  dava_pie$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# Daire grafiği
+ggplot(dava_pie, aes(x = "", y = Toplam_Bosanma, fill = Dava_Suresi)) +
+  geom_col(width = 1, color = "white") +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(Yuzde, "%")),
+            position = position_stack(vjust = 0.5), color = "white", size = 4) +
+  labs(
+    title = "Dava Süresine Göre Toplam Boşanma Oranları",
+    fill = "Dava Süresi"
+  ) +
+  theme_void(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
 ```{r}
 dava_karsilastirma <- dava_veri_long %>%
   group_by(Dava_Suresi, Bölge) %>%
@@ -254,6 +362,36 @@ ggplot(dava_karsilastirma, aes(x = Dava_Suresi, y = Toplam_Bosanma, color = Böl
   scale_y_continuous(labels = comma, breaks = seq(0, max(dava_karsilastirma$Toplam_Bosanma), by = 10000))
 
 ```
+
+```{r}
+# Dava süresi sıralı faktör olarak ayarlanmalı
+dava_veri_long$Dava_Suresi <- factor(
+  dava_veri_long$Dava_Suresi,
+  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
+  ordered = TRUE
+)
+
+# Boxplot
+ggplot(dava_veri_long, aes(x = Dava_Suresi, y = Bosanma_Sayisi)) +
+  geom_boxplot(fill = "#1f78b4", alpha = 0.7, outlier.color = "red") +
+  labs(
+    title = "Dava Süresine Göre Boşanma Sayısı Dağılımı",
+    x = "Dava Süresi",
+    y = "Boşanma Sayısı"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_log10(labels = scales::comma)
+```
+
+**Yıllara Göre Dava Süresine Bağlı Boşanma Sayılarının Karşılaştırması**
+
+Grafikte, 2018–2024 yılları arasında boşanma davalarının sonuçlanma süresiyle ilişkili toplam boşanma sayıları gösterilmiştir. Her panel bir yılı temsil etmekte olup, yatay eksende dava süresi kategorileri; dikey eksende ise o yıl içinde ilgili dava süresinde tamamlanan boşanma sayısı yer almaktadır.
+
+Dava süresi uzadıkça boşanma sayılarında sistematik bir azalma gözlemlenmektedir. Tüm yıllarda bu azalış benzer şekilde devam etmektedir. Zaman serisi perspektifinden bakıldığında, yıllar arası genel eğilim oldukça kararlıdır. Yani dava süresi arttıkça boşanma sayısında düşüş görülmesi, her yıl tekrarlanan bir paterndir. Bu yapı, yıllık dalgalanmaların olmasına rağmen dava süresi ile boşanma sayısı arasındaki ilişkinin güçlü ve istikrarlı olduğunu göstermektedir.
 
 ```{r}
 # 1. Yıl ve dava süresine göre toplam boşanma sayısını hesapla
@@ -287,6 +425,12 @@ ggplot(dava_yil_ozet, aes(x = Dava_Suresi, y = Toplam_Bosanma)) +
   scale_y_continuous(labels = comma, breaks = seq(0, max(dava_karsilastirma$Toplam_Bosanma), by = 10000))
 
 ```
+
+**Yıllara Göre Dava Süresi ve Bölgelere Bağlı Boşanma Sayısı** **Karşılaştırması**
+
+Grafikte, 2018–2024 yılları arasında farklı dava süresi kategorilerine göre Türkiye’nin yedi coğrafi bölgesindeki boşanma sayılarının yıllık değişimi gösterilmiştir. Her panel bir dava süresi aralığını temsil etmekte; paneller içinde yer alan çizgiler ise bölgeler arasındaki yıllık boşanma sayısı değişimlerini sunmaktadır.
+
+Genel eğilimlere bakıldığında, “2 aydan az” dava süresi grubunda açık bir şekilde en yüksek boşanma sayısı Marmara Bölgesi’ne aittir. Bu kategori, tüm bölgeler için en yüksek boşanma hacmine sahip paneldir. Marmara bölgesindeki değerlerin diğer tüm bölgelerden belirgin biçimde ayrıldığı ve uç değer etkisi oluşturduğu görülmektedir. Tüm bölgeler için eğriler yıllar arasında dalgalı ancak büyük sıçramalardan uzak bir yapı sergilemektedir. Uzun dava süreçlerinin nadiren görüldüğünü ve bölgesel farkların uzun vadeli davalarda daha dar bantta kaldığını göstermektedir. 
 
 ```{r}
 # 1. Toplam boşanma sayısını Yıl, Bölge ve Dava Süresi bazında grupla
@@ -324,61 +468,6 @@ ggplot(dava_yil_bolge, aes(x = Yıl, y = Toplam_Bosanma, color = Bölge)) +
 ```
 
 ```{r}
-# Dava süresi sıralı faktör olarak ayarlanmalı
-dava_veri_long$Dava_Suresi <- factor(
-  dava_veri_long$Dava_Suresi,
-  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
-  ordered = TRUE
-)
-
-# Boxplot
-ggplot(dava_veri_long, aes(x = Dava_Suresi, y = Bosanma_Sayisi)) +
-  geom_boxplot(fill = "#1f78b4", alpha = 0.7, outlier.color = "red") +
-  labs(
-    title = "Dava Süresine Göre Boşanma Sayısı Dağılımı",
-    x = "Dava Süresi",
-    y = "Boşanma Sayısı"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
-  scale_y_log10(labels = scales::comma)
-```
-
-```{r}
-# Toplam boşanma sayısını dava süresine göre hesapla
-dava_pie <- dava_veri_long %>%
-  group_by(Dava_Suresi) %>%
-  summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
-  mutate(Yuzde = round(Toplam_Bosanma / sum(Toplam_Bosanma) * 100, 1)) %>%
-  ungroup()
-
-# Dava süresi sıralı faktör
-dava_pie$Dava_Suresi <- factor(
-  dava_pie$Dava_Suresi,
-  levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"),
-  ordered = TRUE
-)
-
-# Daire grafiği
-ggplot(dava_pie, aes(x = "", y = Toplam_Bosanma, fill = Dava_Suresi)) +
-  geom_col(width = 1, color = "white") +
-  coord_polar(theta = "y") +
-  geom_text(aes(label = paste0(Yuzde, "%")),
-            position = position_stack(vjust = 0.5), color = "white", size = 4) +
-  labs(
-    title = "Dava Süresine Göre Toplam Boşanma Oranları",
-    fill = "Dava Süresi"
-  ) +
-  theme_void(base_size = 13) +
-  theme(
-    plot.title = element_text(face = "bold", hjust = 0.5)
-  )
-```
-
-```{r}
 # Toplam boşanma sayısını Dava Süresi ve Bölge bazında hesapla
 dava_sure_bolge <- dava_veri_long %>%
   group_by(Dava_Suresi, Bölge) %>%
@@ -410,25 +499,6 @@ ggplot(dava_sure_bolge, aes(x = Dava_Suresi, y = Toplam_Bosanma, fill = Bölge))
 
 ```
 
-```         
-```
-
-## Keşifsel Veri Analizi
-
-xxxxxx
-
-## Trend Analizi
-
-xxxxxx
-
-## Model Uydurma
-
-xxxxxx
-
-## Sonuçlar
-
-xxxxxx
-
 # Sonuçlar ve Ana Çıkarımlar
 
-xxxxxx
+Analiz sonuçlarına göre Türkiye'de boşanma vakalarının büyük çoğunluğu 0–2 ay içinde sonuçlanmakta ve bu süreçte Marmara bölgesi, toplam boşanma içinde en yüksek paya sahiptir. Dava süresi arttıkça boşanma sayıları sistematik olarak düşmekte, özellikle 1 yılı aşan davalarda tüm bölgelerde gözle görülür bir azalma olmaktadır. Evlilik süresi açısından değerlendirildiğinde ise, hem kısa sürede hem de uzun sürede boşanma oranlarının yüksek olduğu, dolayısıyla evliliğin süresinin tek başına koruyucu bir faktör olmadığı görülmektedir. Bölgesel analizlerde Marmara, Ege ve İç Anadolu gibi büyük şehirlerin bulunduğu bölgelerde boşanma sayıları hem yüksek hem de daha çeşitli dava süresi aralıklarında dağılmıştır.
