@@ -25,7 +25,7 @@ Bu projede Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava v
 
 ## Tercih Sebebi
 
-Bu iki veri seti, Türkiye'deki boşanma dinamiklerini hem dava süresi hem de evlilik süresi bağlamında çok boyutlu olarak incelemeye olanak tanıdığı için tercih edilmiştir. Veri setleri, tüm illeri ve bölgeleri kapsaması sayesinde bölgesel karşılaştırmalar yapmayı mümkün kılarken, zaman değişkeni sayesinde yıllara bağlı eğilim analizlerigerçekleştirmeyi de sağlamaktadır. Ayrıca dava süresi ve evlilik süresi gibi iki farklı değişkenin boşanma sayılarıyla ilişkisi, boşanma davranışlarının altında yatan farklı yapısal faktörleri anlamamıza katkı sunmaktadır.
+Tercih edilen bu iki veri seti, Türkiye'deki boşanma dinamiklerini hem dava süresi hem de evlilik süresi bağlamında çok boyutlu olarak incelemeye olanak tanıdığı için tercih edilmiştir. Veri setleri, tüm illeri ve bölgeleri kapsaması sayesinde bölgesel karşılaştırmalar yapmayı mümkün kılarken, zaman değişkeni sayesinde yıllara bağlı eğilim analizlerigerçekleştirmeyi de sağlamaktadır. Ayrıca dava süresi ve evlilik süresi gibi iki farklı değişkenin boşanma sayılarıyla ilişkisi, boşanma davranışlarının altında yatan farklı yapısal faktörleri anlamamıza katkı sunmaktadır.
 
 ## Ön İşleme
 
