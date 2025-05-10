@@ -70,7 +70,37 @@ veri_long$Evlilik_Suresi <- factor(veri_long$Evlilik_Suresi,
 
 
 
+# il_ve_dava_süresi_bosanmalar veri setini oku
+il_ve_dava_suresi_bosanmalar <- read_xlsx("D:/Users/user/Documents/GitHub/muy665-bahar2025-takim-r-we-ready/docs/docs/il_ve_dava_suresi_bosanmalar.xlsx")
+
+# Yıl sütunundaki boş hücreleri bir önceki dolu değerle doldur
+il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar %>%
+  fill("Yıl", .direction = "down")
+
+# Sütunlarda yer alan "-" işaretini 0'la doldur
+sutunlar_davasuresi <- c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+")
+
+il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar_duzenli %>%
+  mutate(across(all_of(sutunlar_davasuresi), ~ replace(., . == "-", "0"))) %>%
+  mutate(across(all_of(sutunlar_davasuresi), ~ as.numeric(.)))
+
+
+dava_veri_long <- il_ve_dava_suresi_bosanmalar_duzenli %>%
+  pivot_longer(
+    cols = -c("İl", "Yıl","Bölge"),
+    names_to = "Dava_Suresi",
+    values_to = "Bosanma_Sayisi"
+  )
+
+dava_veri_long$Dava_Suresi <- factor(dava_veri_long$Dava_Suresi,
+                                   levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"))
+
+
 ```
+
+# Analiz
+
+xxxxxx
 
 ```{r}
 # Tüm yılları bir araya getirip toplam boşanma sayısını hesapla
@@ -204,32 +234,6 @@ ggplot(veri_bolge_sure, aes(x = reorder(Bölge, Toplam_Bosanma), y = Toplam_Bosa
 ```
 
 ```{r}
-# il_ve_dava_süresi_bosanmalar veri setini oku
-il_ve_dava_suresi_bosanmalar <- read_xlsx("D:/Users/user/Documents/GitHub/muy665-bahar2025-takim-r-we-ready/docs/docs/il_ve_dava_suresi_bosanmalar.xlsx")
-
-# Yıl sütunundaki boş hücreleri bir önceki dolu değerle doldur
-il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar %>%
-  fill("Yıl", .direction = "down")
-
-# Sütunlarda yer alan "-" işaretini 0'la doldur
-sutunlar_davasuresi <- c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+")
-
-il_ve_dava_suresi_bosanmalar_duzenli <- il_ve_dava_suresi_bosanmalar_duzenli %>%
-  mutate(across(all_of(sutunlar_davasuresi), ~ replace(., . == "-", "0"))) %>%
-  mutate(across(all_of(sutunlar_davasuresi), ~ as.numeric(.)))
-
-
-dava_veri_long <- il_ve_dava_suresi_bosanmalar_duzenli %>%
-  pivot_longer(
-    cols = -c("İl", "Yıl","Bölge"),
-    names_to = "Dava_Suresi",
-    values_to = "Bosanma_Sayisi"
-  )
-
-dava_veri_long$Dava_Suresi <- factor(dava_veri_long$Dava_Suresi,
-                                   levels = c("2 aydan az", "2-4", "5-8", "9-12", "13-18", "19-24", "25-35", "36+"))
-
-
 dava_karsilastirma <- dava_veri_long %>%
   group_by(Dava_Suresi, Bölge) %>%
   summarise(Toplam_Bosanma = sum(Bosanma_Sayisi, na.rm = TRUE)) %>%
@@ -408,10 +412,6 @@ ggplot(dava_sure_bolge, aes(x = Dava_Suresi, y = Toplam_Bosanma, fill = Bölge))
 
 ```         
 ```
-
-# Analiz
-
-xxxxxx
 
 ## Keşifsel Veri Analizi
 
