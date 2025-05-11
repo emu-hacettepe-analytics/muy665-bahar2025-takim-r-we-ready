@@ -5,7 +5,7 @@ number-sections: true
 
 # Proje Genel Bakış ve Kapsamı
 
-Bu projede Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava ve evlilik süresi gibi zaman boyutlarına göre analiz edilmiştir. Amaç, boşanma sayılarını etkileyen temel faktörleri keşfetmek, farklı bölgeler arasındaki yapısal farklılıkları belirlemek ve kısa/uzun dava süreçlerinin hangi bölgelerde yoğunlaştığını ortaya koymaktır. R programlama dili kullanılarak gerçekleştirilen analizde çeşitli görselleştirme teknikleri (bar grafikler, kutu grafikleri, nokta grafikler ve pasta grafikler) yardımıyla boşanma davranışı incelenmiş; ayrıca süreç sürekliliğini değerlendirebilmek adına zaman serisi temelli analizlere de yer verilmiştir.
+Bu projede 2018 - 2024 yılları arası Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava ve evlilik süresi gibi zaman boyutlarına göre analiz edilmiştir. Amaç, boşanma sayılarını etkileyen temel faktörleri keşfetmek, farklı bölgeler arasındaki yapısal farklılıkları belirlemek ve kısa/uzun dava süreçlerinin hangi bölgelerde yoğunlaştığını ortaya koymaktır. R programlama dili kullanılarak gerçekleştirilen analizde çeşitli görselleştirme teknikleri (bar grafikler, kutu grafikleri, nokta grafikler ve pasta grafikler) yardımıyla boşanma davranışı incelenmiş; ayrıca süreç sürekliliğini değerlendirebilmek adına zaman serisi temelli analizlere de yer verilmiştir.
 
 ![](docs/takim/proje_image/harvey.png){width="500"}
 
@@ -17,7 +17,7 @@ Bu projede Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava v
 
 ## Veri Hakkında Genel Bilgiler
 
-2 adet veri setimiz bulunmaktadır. Bunlar; "İl ve evlilik süresine göre boşanmalar" ve "İl ve dava süresine göre boşanmalar".
+2 adet veri setimiz bulunmaktadır. Bunlar; "İl ve evlilik süresine göre boşanmalar" ve "İl ve dava süresine göre boşanmalar". Bu iki veri seti de 2018 - 2024 yıllarını kapsamaktadır.
 
 İl ve evlilik süresine göre boşanmalar veri seti, Türkiye’de iller ve coğrafi bölgeler bazında boşanma olaylarını evlilik süresi dikkate alınarak detaylı biçimde sunmaktadır. Toplamda 567 gözlem ve 12 değişkenden oluşan veri setinde her satır, bir ilin belirli bir yıl içerisindeki boşanma istatistiklerini temsil etmektedir. “Yıl”, “İl” ve “Bölge” değişkenleri tanımlayıcı nitelikte olup, diğer sütunlar boşanma olaylarının evlilik süresine göre dağılımını içermektedir. Evlilik süresi kategorileri, “0–1 yıl” aralığından başlayıp, “16 yıl ve üzeri” olacak şekilde ayrıntılı olarak sınıflandırılmıştır.
 
