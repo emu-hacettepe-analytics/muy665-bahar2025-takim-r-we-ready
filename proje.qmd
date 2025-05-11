@@ -3,6 +3,8 @@ title: "Türkiye'de Boşanma Dinamiklerinin Analizi: Bölgesel ve Süre Bazlı Y
 number-sections: true
 ---
 
+[Proje Tanıtım Videosu](/docs/docs/proje_video.mp4 "Proje Tanıtım Videosu")
+
 # Proje Genel Bakış ve Kapsamı
 
 Bu projede 2018 - 2024 yılları arası Türkiye'de boşanma vakaları, hem coğrafi bölgelere hem de dava ve evlilik süresi gibi zaman boyutlarına göre analiz edilmiştir. Amaç, boşanma sayılarını etkileyen temel faktörleri keşfetmek, farklı bölgeler arasındaki yapısal farklılıkları belirlemek ve kısa/uzun dava süreçlerinin hangi bölgelerde yoğunlaştığını ortaya koymaktır. R programlama dili kullanılarak gerçekleştirilen analizde çeşitli görselleştirme teknikleri (bar grafikler, kutu grafikleri, nokta grafikler ve pasta grafikler) yardımıyla boşanma davranışı incelenmiş; ayrıca süreç sürekliliğini değerlendirebilmek adına zaman serisi temelli analizlere de yer verilmiştir.
