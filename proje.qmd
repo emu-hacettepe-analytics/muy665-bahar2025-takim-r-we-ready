@@ -181,6 +181,8 @@ Marmara Bölgesi açık ara farkla en fazla boşanma vakasına sahiptir. Bu dur
 
 İç Anadolu, Ege ve Akdeniz bölgeleri de görece yüksek boşanma sayılarına sahiptir. Bu üç bölgede de büyük şehirlerin (Ankara, İzmir, Antalya gibi) bulunması, bölgelerdeki boşanma sayısını arttırmaktadır.
 
+Boşanma sayısının düşük olduğu bölgelerde, sosyokültürel normlar ve toplumsal baskıların bireylerin boşanma kararlarını sınırlandırıcı bir rol oynaması muhtemeldir.
+
 ```{r}
 veri_bolge <- veri_long %>%
   group_by(Bölge) %>%
@@ -210,7 +212,9 @@ ggplot(veri_bolge, aes(x = reorder(Bölge, -Toplam_Bosanma), y = Toplam_Bosanma)
 
 Grafikte, 2018 ile 2024 yılları arasında Türkiye’nin yedi coğrafi bölgesine göre yıllık toplam boşanma sayıları gösterilmiştir. Grafik, hem zaman serisi hem de çoklu kategorik değişken (bölge) üzerinden karşılaştırma imkânı sunmaktadır.
 
-Zaman içinde genel boşanma eğilimi incelendiğinde, 2020 yıllarında bir miktar düşüş dikkat çekmektedir. Bu yılda yaşanan azalma, dışsal faktörlerin etkisiyle (örneğin pandemi dönemi) açıklanabilir ancak bu grafikte dışsal nedenler analiz dışıdır. 2021 yılından itibaren boşanma sayılarında yeniden artış gözlemlenmektedir. Bu artış eğilimi, yıllar bazında pozitif bir trend olduğuna işaret eder. Özellikle Marmara, İç Anadolu ve Ege bölgelerinde yıllara göre istikrarlı bir artış eğilimi bulunmaktadır.
+Zaman içinde genel boşanma eğilimi incelendiğinde, 2020 yıllarında bir miktar düşüş dikkat çekmektedir. Bu düşüş, doğrudan grafik kapsamında modellenmemiş olsa da, COVID-19 pandemisinin sosyal ve kurumsal etkileriyle ilişkilendirilebilir. Pandemi döneminde adli süreçlerin yavaşlaması, fiziksel erişim kısıtları ve genel belirsizlik ortamı, boşanma kararlarının ertelenmesine veya uygulanabilirliğinin geçici olarak zayıflamasına neden olmuş olabilir.
+
+2021 yılından itibaren boşanma sayılarında yeniden artış gözlemlenmektedir. 2021 sonrası artış, gecikmiş boşanma kararlarının birikimli olarak yansıması olarak değerlendirilebilir. Bu artış eğilimi, yıllar bazında pozitif bir trend olduğuna işaret eder. Özellikle Marmara, İç Anadolu ve Ege bölgelerinde yıllara göre istikrarlı bir artış eğilimi bulunmaktadır.
 
 ```{r}
 # Yıllara ve bölgelere göre boşanma sayılarını grupla
@@ -393,6 +397,10 @@ Grafikte, 2018–2024 yılları arasında boşanma davalarının sonuçlanma sü
 
 Dava süresi uzadıkça boşanma sayılarında sistematik bir azalma gözlemlenmektedir. Tüm yıllarda bu azalış benzer şekilde devam etmektedir. Zaman serisi perspektifinden bakıldığında, yıllar arası genel eğilim oldukça kararlıdır. Yani dava süresi arttıkça boşanma sayısında düşüş görülmesi, her yıl tekrarlanan bir paterndir. Bu yapı, yıllık dalgalanmaların olmasına rağmen dava süresi ile boşanma sayısı arasındaki ilişkinin güçlü ve istikrarlı olduğunu göstermektedir.
 
+Veri seti genelinde “2 aydan az” dava süresi kategorisi her yıl açık ara en yüksek boşanma sayısına sahiptir. Bu durum, anlaşmalı boşanma yönteminin Türkiye genelinde yaygın bir tercih olduğunu, taraflar arasında ciddi bir anlaşmazlık yaşanmadığında boşanma süreçlerinin oldukça hızlı ilerlediğini göstermektedir.
+
+Genel eğilim değerlendirildiğinde, dava süresi uzadıkça boşanma sıklığının azalması, sosyal yapı ve hukuki erişim açısından Türkiye’de boşanma kararlarının, taraflar arasında uzlaşma olduğu sürece hızlı ve yaygın bir şekilde sonuçlandığı; ancak süreç çekişmeli hale geldikçe hem toplumsal hem de bireysel faktörler (maddi yetersizlik, sosyal baskılar, duygusal yük) boşanma kararını zorlaştırmakta ve davaların daha nadir hale gelmesine yol açmaktadır.
+
 ```{r}
 # 1. Yıl ve dava süresine göre toplam boşanma sayısını hesapla
 dava_yil_ozet <- dava_veri_long %>%
@@ -501,4 +509,10 @@ ggplot(dava_sure_bolge, aes(x = Dava_Suresi, y = Toplam_Bosanma, fill = Bölge))
 
 # Sonuçlar ve Ana Çıkarımlar
 
-Analiz sonuçlarına göre Türkiye'de boşanma vakalarının büyük çoğunluğu 0–2 ay içinde sonuçlanmakta ve bu süreçte Marmara bölgesi, toplam boşanma içinde en yüksek paya sahiptir. Dava süresi arttıkça boşanma sayıları sistematik olarak düşmekte, özellikle 1 yılı aşan davalarda tüm bölgelerde gözle görülür bir azalma olmaktadır. Evlilik süresi açısından değerlendirildiğinde ise, hem kısa sürede hem de uzun sürede boşanma oranlarının yüksek olduğu, dolayısıyla evliliğin süresinin tek başına koruyucu bir faktör olmadığı görülmektedir. Bölgesel analizlerde Marmara, Ege ve İç Anadolu gibi büyük şehirlerin bulunduğu bölgelerde boşanma sayıları hem yüksek hem de daha çeşitli dava süresi aralıklarında dağılmıştır.
+Bu çalışma, Türkiye’deki boşanma dinamiklerini hem coğrafi bölgelere hem de evlilik ve dava süresi gibi zaman boyutlarına dayalı olarak çok boyutlu bir yaklaşımla incelemiştir. Elde edilen bulgular, boşanma olgusunun yalnızca kısa süreli evliliklerle sınırlı olmadığını; uzun yıllar süren evliliklerin de yüksek oranda boşanma ile sonuçlanabildiğini ortaya koymaktadır. Özellikle “16 yıl ve üzeri” evlilik kategorisinde boşanma oranlarının dikkat çekici seviyede olması, evlilik süresinin tek başına evliliğin devamlılığını garanti etmediğini göstermektedir.
+
+Dava süresi açısından değerlendirildiğinde, boşanma davalarının büyük çoğunluğunun 0–2 ay içinde sonuçlandığı ve bu sürecin anlaşmalı boşanmaların yaygınlığına işaret ettiği anlaşılmaktadır. Dava süresi uzadıkça boşanma sayılarında sistematik bir azalma gözlemlenmiş; özellikle 12 ayı aşan süreçlerde tüm bölgelerde belirgin bir düşüş yaşanmıştır. Bu eğilim, yıllar boyunca istikrarlı bir şekilde devam etmiş ve dava süresi ile boşanma oranı arasında güçlü bir ters ilişki olduğunu ortaya koymuştur.
+
+Bölgesel analizler, Marmara Bölgesi’nin hem toplam boşanma sayısında hem de farklı dava süresi aralıklarındaki çeşitlilikte açık ara önde olduğunu göstermektedir. Benzer şekilde Ege, İç Anadolu ve Akdeniz gibi büyükşehir barındıran bölgelerde de yüksek boşanma oranları dikkat çekmiştir. Buna karşın boşanma oranlarının düşük olduğu bölgelerde, sosyokültürel normlar ve toplumsal baskıların bireylerin boşanma kararlarını sınırlayıcı bir rol oynayabileceği değerlendirilmektedir.
+
+Genel olarak, analizler boşanma olgusunun çok boyutlu ve yapısal bir mesele olduğunu göstermektedir. Evlilik süresi, dava süresi ve bölgesel farklar, boşanma eğilimlerini şekillendiren temel değişkenlerdir.
